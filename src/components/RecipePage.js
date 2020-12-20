@@ -1,22 +1,10 @@
 import React from 'react';
 import { isEmpty, map } from 'lodash';
-import { Link } from 'react-router-dom';
 
 const RecipePage = ({recipeLink, randomRecipe}) => {
 
-  const handleRecipe = () => {
-
-    map(randomRecipe,(recipe, index) => {
-      if (recipeLink === recipe.meals[0].strMeal) {
-        console.log(recipe)
-      }
-    })
-  }
-
-  
   return (
     <div>
-      {handleRecipe()}
       {map(randomRecipe, (recipe, index) => {
        
         const food = recipe.meals[0]
@@ -24,12 +12,9 @@ const RecipePage = ({recipeLink, randomRecipe}) => {
         if (recipeLink === food.strMeal) {
       
           return (
-              //tried mapping but since each ingredient key had a different name I couln't map
+              //tried mapping but since each ingredient key had a different names I couln't map
             <div key={index}>
-              <Link to='/'>
-                <h4>Back to home page</h4>  
-              </Link>
-              <img src={food.strMealThumb }/>
+              <img alt='food' src={food.strMealThumb }/>
               <h1>{food.strMeal}</h1>
               <ul>
                 {!isEmpty(food.strIngredient1) && <li>{food.strIngredient1}</li>}
